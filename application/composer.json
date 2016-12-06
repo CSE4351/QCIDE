@@ -1,0 +1,6 @@
+{
+    "require": {
+        "stripe/stripe-php": "^4.1",
+        "eventviva/php-image-resize": "^1.6"
+    }
+}

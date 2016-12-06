@@ -1,0 +1,21 @@
+FROM toozick/qcide-php-apache-base:v1
+
+# Install composer packages
+RUN mkdir -p /composer
+WORKDIR /composer
+COPY application/composer.json composer.json
+RUN composer install
+RUN chmod 777 vendor -R
+
+# Copy files
+COPY docker /var/www/html/docker
+COPY index.php /var/www/html/index.php
+COPY phpinfo.php /var/www/html/phpinfo.php
+COPY .htaccess /var/www/html/.htaccess
+COPY application /var/www/html/application
+
+# Turn off XDebug
+COPY docker/php-apache/xdebug-prod.ini /usr/local/etc/php/conf.d/xdebug-prod.ini
+RUN rm /usr/local/etc/php/conf.d/xdebug-dev.ini
+
+WORKDIR /var/www/html/application

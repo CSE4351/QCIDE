@@ -1,0 +1,58 @@
+version: '2'
+services:
+  ember:
+    container_name: ember
+    build:
+      context: .
+      dockerfile: docker/ember/Dockerfile-dev
+    ports:
+      - "4200:4200"
+      - "35729:35729"
+    volumes:
+      - ./ember-app/app:/var/www/html/ember-app/app
+      - ./ember-app/tests:/var/www/html/ember-app/tests
+      - ./ember-app/config:/var/www/html/ember-app/config
+      - ./ember-app/public:/var/www/html/ember-app/public
+      - ./ember-app/vendor:/var/www/html/ember-app/vendor
+      - ./ember-app/package.json:/var/www/html/ember-app/package.json
+      - ./ember-app/bower.json:/var/www/html/ember-app/bower.json
+      - ./ember-app/ember-cli-build.js:/var/www/html/ember-app/ember-cli-build.js
+      - ./ember-app/.watchmanconfig:/var/www/html/ember-app/.watchmanconfig
+      - ./ember-app/.ember-cli:/var/www/html/ember-app/.ember-cli
+      - ./ember-app/.jshintrc:/var/www/html/ember-app/.jshintrc
+      - ./docker:/var/www/html/docker
+    environment:
+      AWS_ACCESS_KEY_ID: "AKIAIE7JO4KZMVJOQS6A"
+      AWS_SECRET_ACCESS_KEY: "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"
+      AWS_DEPLOY_BUCKET: "static.qcide.com"
+      STATIC_URL: "http://static.qcide.com/"
+  php-apache:
+    container_name: php-apache
+    build:
+      context: .
+      dockerfile: docker/php-apache/Dockerfile-dev
+    links:
+      - mysql
+    ports:
+      - "8080:80"
+    environment:
+      XDEBUG_CONFIG: remote_host=<do_not_touch>
+      CI_ENV: development
+    volumes:
+      - ./docker:/var/www/html/docker
+      - ./index.php:/var/www/html/index.php
+      - ./phpinfo.php:/var/www/html/phpinfo.php
+      - ./.htaccess:/var/www/html/.htaccess
+      - ./application:/var/www/html/application
+  mysql:
+    container_name: mysql
+    build:
+      context: .
+      dockerfile: docker/mysql/Dockerfile-prod
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_USER: admin
+      MYSQL_ROOT_PASSWORD: 349v664384308y34860m72v
+      MYSQL_PASSWORD: 349v664384308y34860m72v
+      MYSQL_DATABASE: MainDatabase

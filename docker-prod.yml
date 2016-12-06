@@ -1,0 +1,14 @@
+php-apache:
+  restart: always
+  image: toozick/qcide-php-apache-prod:v1
+  links:
+    - mysql
+  ports:
+    - "80:80"
+  environment:
+    CI_ENV: production
+mysql:
+  restart: always
+  image: toozick/qcide-mysql-prod:v1
+  ports:
+    - "3306:3306"

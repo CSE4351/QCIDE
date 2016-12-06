@@ -1,0 +1,42 @@
+{{#if is_full_page}}
+    {{outlet}}
+{{else}}
+    <div class="container body">
+        <div class="main_container">
+            {{main-sidebar}}
+            <!-- top navigation -->
+            {{main-header}}
+            <!-- /top navigation -->
+            <!-- page content -->
+            <div class="right_col" role="main">
+                <div class="page-title">
+                    <div class="title_left">
+                        <h1>{{ route_title }}</h1>
+                    </div>
+                    <div class="title_right">
+                    </div>
+                </div>
+                <!-- /top tiles -->
+                <div class="row">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        <div class="x_panel">
+                            <div class="x_content">
+                                {{outlet}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br />
+            </div>
+            <!-- /page content -->
+            <!-- footer content -->
+            <footer>
+                <div class="pull-right">
+                    QCIDE
+                </div>
+                <div class="clearfix"></div>
+            </footer>
+            <!-- /footer content -->
+        </div>
+    </div>
+{{/if}}

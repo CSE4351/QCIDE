@@ -1,0 +1,5 @@
+FROM mysql:5.5
+
+# Copy files
+COPY documentation/sql/database_setup.sql /docker-entrypoint-initdb.d/database_setup.sql
+COPY docker/mysql/my.cnf /etc/mysql/conf.d/my.cnf
