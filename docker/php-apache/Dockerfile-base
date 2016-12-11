@@ -10,7 +10,7 @@ RUN apt-get update
 #RUN echo "ServerName localhost" >> /etc/apache2/apache2.conf
 
 # Essentials
-RUN apt-get -y install vim wget git netcat telnet rsyslog
+RUN apt-get -y install vim wget git netcat telnet rsyslog python texlive csh netpbm
 COPY docker/php-apache/vimrc.local /etc/vim/vimrc.local
 
 # Apache mods

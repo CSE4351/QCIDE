@@ -1,6 +1,7 @@
 <?php
 class Password_model extends CI_Model {
     function create_password_reset($username){
+        throw new Exception('Email sending needs to be setup.');
         $sql = $this->db->from('users')->where(array('username' => $username))->get_compiled_select();
         $user = q(array(
             'sql' => $sql,

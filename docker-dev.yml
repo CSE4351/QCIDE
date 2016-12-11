@@ -14,8 +14,6 @@ services:
       - ./ember-app/config:/var/www/html/ember-app/config
       - ./ember-app/public:/var/www/html/ember-app/public
       - ./ember-app/vendor:/var/www/html/ember-app/vendor
-      - ./ember-app/package.json:/var/www/html/ember-app/package.json
-      - ./ember-app/bower.json:/var/www/html/ember-app/bower.json
       - ./ember-app/ember-cli-build.js:/var/www/html/ember-app/ember-cli-build.js
       - ./ember-app/.watchmanconfig:/var/www/html/ember-app/.watchmanconfig
       - ./ember-app/.ember-cli:/var/www/html/ember-app/.ember-cli

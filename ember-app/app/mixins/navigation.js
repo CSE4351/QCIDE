@@ -7,7 +7,7 @@ export default Ember.Mixin.create({
     }),
     route_title: Ember.computed('router.currentPath',function() {
         var route_name_hash = {
-            dashboard: 'Dashboard'
+            ide: 'IDE'
         };
         return route_name_hash[this.get('router.currentPath')];
     })

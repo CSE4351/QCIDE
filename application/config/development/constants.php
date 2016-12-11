@@ -15,7 +15,7 @@ define('MYSQL_DRIVER','mysqli');
 define('MYSQL_CHARSET','utf8mb4');
 
 //Global
-define('NOTIFICATIONS',true);
+define('NOTIFICATIONS',false);
 define('MB_RATIO',1048576);
 define('FAILED_LOGIN_ATTEMPTS',5);
 define('IP_HEADER','REMOTE_ADDR');
@@ -37,7 +37,7 @@ define('HASH','#/');
 define('BASE_NAME','QCIDE');
 define('BASE_NAME_ABBR','QCIDE');
 
-define('SENDGRID_API_KEY','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');
+define('SENDGRID_API_KEY','change_this');
 define('SENDGRID_EMAIL',"support@qcide.com");
 define('SENDGRID_REPLY_EMAIL',"support@qcide.com");
 define('SENDGRID_NAME','QCIDE');

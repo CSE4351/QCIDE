@@ -2771,7 +2771,6 @@ UI Loading
 ***/
 .loading-message {
     display: inline-block;
-    min-width: 125px;
     padding: 10px;
     margin: 0 auto;
     color: #000 !important;

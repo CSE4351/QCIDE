@@ -102,7 +102,6 @@ body {
 }
 .loading-message {
     display: inline-block;
-    min-width: 125px;
     padding: 10px;
     margin: 0 auto;
     color: #000 !important;
@@ -185,4 +184,17 @@ a.selected{
 textarea.form-control {
     height: inherit;
     cursor: pointer;
+}
+.ide-textarea{
+    min-height: 600px;
+    width: 100%;
+    resize: none;
+    font-size: 16px;
+}
+.simulation{
+    min-height: 600px;
+    width: 100%
+}
+.simulation img{
+    max-width: 100%;
 }

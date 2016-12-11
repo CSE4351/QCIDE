@@ -3,8 +3,6 @@
 class Users_model extends CI_Model {
 
     function load($uid){
-        $this->load->model('accounts_model');
-
         $user = lookup_user($uid);
         if(!$user) throw new Exception('Error retrieving account info.');
 

@@ -1,1 +1,5 @@
 TODO:
+
+Commands for QASM conversion:
+apt-get install python texlive csh netpbm
+

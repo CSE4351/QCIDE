@@ -59,6 +59,8 @@ module.exports = function(defaults) {
     app.import('vendor/moment/moment.js');
     app.import('bower_components/jquery-knob/js/jquery.knob.js');
     app.import('vendor/js/twemoji.js');
+    app.import('vendor/underscore.js');
+    app.import('vendor/ace/ace.js');
 
     //Datatables
     app.import('vendor/datatables/media/js/jquery.dataTables.js');
