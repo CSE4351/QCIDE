@@ -1,0 +1,2 @@
+documentation/demos/PrototypeDemo.mpeg filter=lfs diff=lfs merge=lfs -text
+*.mpeg filter=lfs diff=lfs merge=lfs -text
