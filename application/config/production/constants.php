@@ -49,8 +49,8 @@ define('ALGOLIA_POSTS_INDEX',"posts");
 
 //AWS
 define('AWS_S3_BASE_NAME','s3.amazonaws.com');
-define('AWS_KEY','AKIAIE7JO4KZMVJOQS6A');
-define('AWS_SECRET','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');
+define('AWS_KEY','change_this');
+define('AWS_SECRET','change_this');
 define('AWS_S3_FILES_BUCKET_NAME','files.qcide.com');
 define('AWS_S3_MAX_UPLOAD_SIZE', 10);//Size in MB
 define('AWS_S3_POSTS_BASE','posts/');
