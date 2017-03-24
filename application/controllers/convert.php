@@ -4,7 +4,6 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 class Convert extends REST_Controller  {
 
     public function index_post(){
-        $valid_convert = false;
         $image = null;
         $file_name = $this->post('file_name');
         if(empty($file_name)) throw new Exception('A filename is required.');
@@ -12,31 +11,30 @@ class Convert extends REST_Controller  {
         $qasm = $this->post('qasm');
         if(empty($qasm)) throw new Exception('QASM is required.');
 
-        $qasm_folder = '/var/www/html/application/resources/QASMConversion/';
+        $qasm = str_replace('include "qelib1.inc";','',$qasm);
+
+        $qasm = 'include "qelib1.inc";' . $qasm;
+
+        $qasm_folder = '/var/www/html/application/resources/Python/';
         chdir($qasm_folder);
         file_put_contents($file_name . '.qasm',$qasm);
-        $command = 'csh qasm2png ' . $file_name . '.qasm';
+        $command = 'python qasm_to_png.py';
 
         //Convert
         exec($command, $output, $return_var);
-        if(file_exists($file_name . '.dvi')){
-            $valid_convert = true;
-            $image = file_get_contents($file_name . '.png');
-        }
+        $response = json_decode($output[0], true);
 
-        //Remove created files
-        $extensions = array('aux','dvi','eps','idx','log','tex','png','qasm');
-        foreach($extensions as $extension){
-            if(file_exists($file_name . '.' . $extension)){
-                unlink($file_name . '.' . $extension);
-            }
-        }
-
-        //Return PNG
-        if($valid_convert){
-            $this->response(array('converted' => 'data:image/png;base64,' . base64_encode($image)));
+        if(!empty($response['error'])){
+            throw new Exception($response['error']['message']);
         }else{
-            throw new Exception('Invalid QASM syntax.');
+            //Return PNG
+            $counter = 0;
+            while($counter++ < 5){
+                $image = file_get_contents($response['url']);
+                if($image) break;
+                sleep(3);
+            }
+            $this->response(array('converted' => 'data:image/png;base64,' . base64_encode(file_get_contents($response['url']))));
         }
     }
 }

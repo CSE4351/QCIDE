@@ -8,3 +8,6 @@ RUN composer install
 RUN chmod 777 vendor -R
 
 WORKDIR /var/www/html/application
+
+# Install Python packages
+RUN pip install IBMQuantumExperience

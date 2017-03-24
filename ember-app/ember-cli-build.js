@@ -62,6 +62,11 @@ module.exports = function(defaults) {
     app.import('vendor/underscore.js');
     app.import('vendor/ace/ace.js');
 
+    app.import('vendor/elevatezoom/jquery.elevatezoom.js');
+    app.import('vendor/codemirror/lib/codemirror.js');
+    app.import('vendor/codemirror/lib/codemirror.css');
+    app.import('vendor/codemirror/mode/qasm/qasm.js');
+
     //Datatables
     app.import('vendor/datatables/media/js/jquery.dataTables.js');
     app.import('vendor/datatables/extensions/TableTools/js/dataTables.tableTools.min.js');

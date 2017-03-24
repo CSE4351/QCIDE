@@ -198,3 +198,16 @@ textarea.form-control {
 .simulation img{
     max-width: 100%;
 }
+.CodeMirror {
+  border: 1px solid #ddd;
+    height: auto;
+}
+.cm-s-default span.cm-blue {
+    color: #b2d9e8;
+}
+.cm-s-default span.cm-string {
+    color: #F08047;
+}
+.cm-s-default span.cm-atom {
+    color: #F4C20B;
+}

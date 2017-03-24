@@ -1,25 +1,29 @@
 import Ember from 'ember';
-/* global ace */
+/* global ace, CodeMirror, _ */
 
 export default Ember.Component.extend({
-    didInsertElement(){
-        var editor = ace.edit("editor");
-        editor.getSession().on('change', _.debounce(() => {
+    didInsertElement() {
+        let editor = CodeMirror.fromTextArea($('#editor')[0], {
+            lineNumbers: true,
+            mode: "qasm"
+        });
+        editor.on('change', _.debounce(() => {
             Ember.debug('done typing');
+            let qasm = editor.getValue();
 
-            var qasm = editor.getValue();
-
-            if(qasm !== ''){
-                this.get('ajax').post('/convert',{
+            if (qasm !== '') {
+                this.get('ajax').post('/convert', {
                     data: {
                         file_name: 'temp',
                         qasm: qasm
                     }
                 }).then((response_data) => {
-                    $('.simulation-image').attr('src', response_data['converted']);
-                },(error) => {
+                    $('.simulation-image').attr('src', response_data['converted']).data('zoom-image', response_data['converted']).elevateZoom({
+                        zoomWindowPosition: 11
+                    });
+                }, (error) => {
                     $('.simulation-image').attr('src', '');
-                    createError('QASM simulation creation error',error);
+                    createError('QASM simulation creation error', error);
                 }).finally(() => {
                     this.get('utils').unblockUI('.simulation');
                 });
@@ -28,6 +32,6 @@ export default Ember.Component.extend({
                     boxed: true
                 });
             }
-        } , 1000));
+        }, 3000));
     }
 });
